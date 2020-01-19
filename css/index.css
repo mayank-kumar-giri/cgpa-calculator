@@ -95,17 +95,23 @@ p {
 }
 
 #cfl {
+  text-align: left;
   width: 95vw;
   height: 7vh;
-  margin-top: 5%;
-  margin-bottom: 0px;
+  margin-top: 10%;
+  margin-bottom: 1%;
+  margin-left: 5%;
+  position: relative;
 }
 
 #cff {
+  text-align: left;
   width: 95vw;
   height: 7vh;
-  margin-top: 5%;
-  margin-bottom: 0px;
+  margin-top: 1%;
+  margin-left: 5%;
+  margin-bottom: 3%;
+  position: relative;
 }
 
 .submit {
