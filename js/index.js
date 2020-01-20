@@ -23,16 +23,23 @@ function copy_to_clipboard_from(element_id) {
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
-    document.body.removeChild(el);
+	document.body.removeChild(el);
+	$("#c_all").val(cont);
 }
 
-$("#cseb").on('click keypress', function() {
-	copy_to_clipboard_from("cse");
+$("#cse16b").on('click keypress', function() {
+	copy_to_clipboard_from("cse16");
 });
 
-$("#eceb").on('click keypress', function() {
-	copy_to_clipboard_from("ece");
+$("#ece16b").on('click keypress', function() {
+	copy_to_clipboard_from("ece16");
 });
+$("#cse17b").on('click keypress',function(){
+	copy_to_clipboard_from("cse17");
+})
+$("#ece17b").on('click keypress',function(){
+	copy_to_clipboard_from("ece17");
+})
 
 $("#m1").on('click keypress', function(e) {
 	var temp = get_credits();
@@ -95,18 +102,67 @@ $("#m1").on('click keypress', function(e) {
 	}
 });
 
-$("#m2").on('click keypress', function(e) {
+
+$("#m2").on('click keypress', function(e){
+	var temp = get_credits();
+	var arr = temp[0];
+	var total = temp[1];
+	console.log("OKT",arr,total);
+	var form_is_html_valid = $("#method2")[0].checkValidity();
+	if(form_is_html_valid)
+	{
+		e.preventDefault();
+		$("#verdict").remove();
+		const sem6 = $("#sem6m2").val();
+		const sem7 = $("#sem7m2").val();
+		const sem8 = $("#sem8m2").val();
+		const cg5 = $("#cg5").val();
+		console.log(sem6,sem7,sem8,cg5);
+		var curr_cgpa = 0;
+		var projected_cgpa = 0;
+
+		curr_cgpa = cg5;
+		projected_cgpa = ((cg5*(total-arr[5]-arr[6]-arr[7]))+(sem6*arr[5])+(sem7*arr[6])+(sem8*arr[7]))/total;
+		console.log(projected_cgpa)
+		curr_cgpa = Math.round(curr_cgpa*1000)/1000;
+		projected_cgpa = Math.round(projected_cgpa*1000)/1000;
+
+		var diff = projected_cgpa - curr_cgpa;
+		diff = Math.round(diff*1000)/1000;
+		
+		var percent_change = ((projected_cgpa-curr_cgpa)/curr_cgpa)*100;
+        percent_change = Math.round(percent_change*1000)/1000;
+
+        const $verdict = $(`
+        	<div id="verdict" class="result" style="display: none;">
+				Your current CGPA (Till 6th semester): ${curr_cgpa}<br>
+				Your overall CGPA: ${projected_cgpa}<br>
+				A total difference of ${diff}, i.e., ${percent_change}% change, LOL :p
+			</div>
+		`);
+		
+		var flag = true;
+        console.log(curr_cgpa,projected_cgpa,diff,percent_change);
+        console.log(sem8,cg6,sem7,$verdict);
+    	if((sem8 == "") || (cg6 == "") || (sem7 == "")) flag = false;
+		if(flag) $("#sm2").append($verdict);
+		console.log("Its happening");
+		$("#verdict").fadeIn(900);
+	}
+})
+
+$("#m3").on('click keypress', function(e) {
 	var temp = get_credits();
 	var arr = temp[0];
 	var total = temp[1];
 	console.log(arr,total);
-	var form_is_html_valid = $("#method2")[0].checkValidity();
+	var form_is_html_valid = $("#method3")[0].checkValidity();
     if (form_is_html_valid) 
     {
 		e.preventDefault();
 		$("#verdict").remove();
-		const sem7 = $('#sem7m2').val();
-		const sem8 = $('#sem8m2').val();
+		const sem7 = $('#sem7m3').val();
+		const sem8 = $('#sem8m3').val();
 		const cg6 = $('#cg6').val();
 
         var curr_cgpa = 0;
@@ -136,7 +192,7 @@ $("#m2").on('click keypress', function(e) {
         console.log(curr_cgpa,projected_cgpa,diff,percent_change);
         console.log(sem8,cg6,sem7,$verdict);
     	if((sem8 == "") || (cg6 == "") || (sem7 == "")) flag = false;
-		if(flag) $("#sm2").append($verdict);
+		if(flag) $("#sm3").append($verdict);
 		console.log("Its happening");
 		$("#verdict").fadeIn(900);
 	}
@@ -144,17 +200,17 @@ $("#m2").on('click keypress', function(e) {
 });
 
 
-$("#m3").on('click keypress', function(e) {
+$("#m4").on('click keypress', function(e) {
 	var temp = get_credits();
 	var arr = temp[0];
 	var total = temp[1];
 	console.log(arr,total);
-	var form_is_html_valid = $("#method3")[0].checkValidity();
+	var form_is_html_valid = $("#method4")[0].checkValidity();
     if (form_is_html_valid) 
     {
 		e.preventDefault();
 		$("#verdict").remove();
-		const sem8 = $('#sem8m3').val();
+		const sem8 = $('#sem8m4').val();
 		const cg7 = $('#cg7').val();
 
         var curr_cgpa = 0;
@@ -182,7 +238,7 @@ $("#m3").on('click keypress', function(e) {
 
         var flag = true;
     	if((sem8 == "") || (cg7 == "")) flag = false;
-		if(flag) $("#sm3").append($verdict);
+		if(flag) $("#sm4").append($verdict);
 		
 		$("#verdict").fadeIn(900);
 	}
