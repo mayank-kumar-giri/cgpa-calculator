@@ -32,7 +32,7 @@
 }
 
 .result {
-	height: 14vh;
+	height: 12vh;
 	width: 90vw;
 	background-color: lightgreen;
 	color: black;
@@ -74,7 +74,7 @@ p {
 
 #eceiiit {
   width: 40vw;
-  /* height: 10vh; */
+  height: 10vh;
   text-align: left;
   float: right;
   font-weight: 10px;
@@ -85,7 +85,7 @@ p {
 
 #cseiiit {
   width: 40vw;
-  /* height: 10vh; */
+  height: 10vh;
   float: left;
   text-align: left;
   font-weight: 10px;
@@ -98,7 +98,7 @@ p {
   text-align: left;
   width: 95vw;
   height: 7vh;
-  margin-top: 20%;
+  margin-top: 10%;
   margin-bottom: 1%;
   margin-left: 5%;
   position: relative;
@@ -139,7 +139,7 @@ p {
   height: 35px;
   width: 180px;
   border-radius: 10px;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
   margin-top: 1%;
   margin-left: 2%;
 }
